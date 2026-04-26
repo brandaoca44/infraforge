@@ -4,11 +4,14 @@ import (
 	"log"
 
 	"github.com/brandaoca44/infraforge/internal/config"
+	"github.com/brandaoca44/infraforge/internal/database"
 	"github.com/brandaoca44/infraforge/internal/server"
 )
 
 func main() {
 	cfg := config.Load()
+
+	database.Connect()
 
 	app := server.New(cfg)
 
