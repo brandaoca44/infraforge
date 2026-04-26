@@ -1,0 +1,17 @@
+# env
+.env
+
+# binários Go
+*.exe
+*.out
+
+# build
+/bin
+/dist
+
+# logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
