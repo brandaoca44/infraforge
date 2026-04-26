@@ -21,3 +21,13 @@ func Create(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{"message": "service created"})
 }
+
+func List(c *gin.Context) {
+	data, err := GetServices()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to fetch services"})
+		return
+	}
+
+	c.JSON(http.StatusOK, data)
+}

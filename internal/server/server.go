@@ -17,6 +17,7 @@ func New(cfg config.Config) *gin.Engine {
 
 	r.GET("/health", health.Check)
 	r.POST("/services", services.Create)
+	r.GET("/services", services.List)
 
 	return r
 }
