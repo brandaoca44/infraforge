@@ -3,6 +3,7 @@ package server
 import (
 	"github.com/brandaoca44/infraforge/internal/config"
 	"github.com/brandaoca44/infraforge/internal/health"
+	"github.com/brandaoca44/infraforge/internal/services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +16,7 @@ func New(cfg config.Config) *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/health", health.Check)
+	r.POST("/services", services.Create)
 
 	return r
 }
