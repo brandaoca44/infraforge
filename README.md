@@ -121,5 +121,5 @@ Get-Content migrations/arquivo.sql | docker exec -i infraforge-db psql -U postgr
 
 👨‍💻 Autor
 
-Caique Brandão
+Caique Brandão,
 Desenvolvedor Full Stack, especialista em arquitetura e sistemas escaláveis.
