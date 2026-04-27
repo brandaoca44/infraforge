@@ -1,5 +1,45 @@
-InfraForge é um sistema de monitoramento de serviços/infraestrutura escrito em Go.
-O que o projeto faz: 
-É uma API REST em Go que cadastra serviços web e os monitora automaticamente a cada 10 segundos, 
-registrando status (online/offline) e tempo de resposta no PostgreSQL.
-O projeto ainda está em fase de testes e desenvolvimento, ele está sendo usado como uma forma de aprendizado e aprimoramento de hard skills.
+# InfraForge
+
+InfraForge é uma plataforma de monitoramento de serviços e infraestrutura, construída em Go com foco em confiabilidade, observabilidade e arquitetura moderna.
+
+## 🧠 Visão do projeto
+
+O objetivo do InfraForge é simular ferramentas utilizadas em ambientes reais de DevOps/SRE, como:
+
+- Monitoramento contínuo de serviços
+- Verificação automática de saúde (health check)
+- Coleta de métricas básicas (status e tempo de resposta)
+- Persistência de dados para análise
+- Base para sistemas de alerta e observabilidade
+
+---
+
+## ⚙️ Funcionalidades
+
+- Cadastro de serviços (URL, ambiente)
+- Monitoramento automático em background (worker)
+- Verificação de status (online/offline)
+- Medição de tempo de resposta
+- Registro de status code HTTP
+- Listagem de serviços monitorados
+- Remoção de serviços
+- Health check da própria API
+- Controle do worker via variáveis de ambiente
+- Graceful shutdown do servidor
+
+---
+
+## 🏗️ Arquitetura
+
+O projeto segue uma estrutura modular:
+
+```txt
+cmd/
+internal/
+  ├── config/
+  ├── database/
+  ├── health/
+  ├── services/
+  ├── worker/
+  └── server/
+migrations/
