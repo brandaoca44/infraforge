@@ -96,10 +96,10 @@ Crie um .env baseado em:
 - MONITOR_INTERVAL_SECONDS=30
 
 🐳 Rodando com Docker
-docker compose up -d
+- docker compose up -d
 
 ▶️ Rodando a API
-go run ./cmd/api
+- go run ./cmd/api
 
 🗄️ Migrations
 
