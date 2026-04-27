@@ -18,15 +18,16 @@ func CreateService(s Service) error {
 
 func GetServices() ([]Service, error) {
 	rows, err := database.DB.Query(context.Background(), `
-		SELECT id, name, url, environment, status, response_time_ms, last_checked_at, created_at
+		SELECT id, name, url, environment, status, response_time_ms, last_status_code, last_checked_at, created_at
 		FROM services
+		ORDER BY created_at DESC
 	`)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	var services []Service
+	services := []Service{}
 
 	for rows.Next() {
 		var s Service
@@ -38,15 +39,31 @@ func GetServices() ([]Service, error) {
 			&s.Environment,
 			&s.Status,
 			&s.ResponseTimeMs,
+			&s.LastStatusCode,
 			&s.LastCheckedAt,
 			&s.CreatedAt,
 		)
 		if err != nil {
-			continue
+			return nil, err
 		}
 
 		services = append(services, s)
 	}
 
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
 	return services, nil
+}
+
+func DeleteService(id string) (bool, error) {
+	result, err := database.DB.Exec(context.Background(), `
+		DELETE FROM services WHERE id=$1
+	`, id)
+	if err != nil {
+		return false, err
+	}
+
+	return result.RowsAffected() > 0, nil
 }

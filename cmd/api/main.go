@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"context"
 
 	"github.com/brandaoca44/infraforge/internal/config"
 	"github.com/brandaoca44/infraforge/internal/database"
@@ -14,13 +14,14 @@ func main() {
 
 	database.Connect()
 
-	worker.StartMonitor()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	if cfg.MonitorEnabled {
+	    worker.StartMonitor(ctx, cfg)
+}
 
 	app := server.New(cfg)
 
-	log.Printf("InfraForge API running on port %s", cfg.Port)
-
-	if err := app.Run(":" + cfg.Port); err != nil {
-		log.Fatal(err)
-	}
+	server.Run(cfg, app, cancel)
 }

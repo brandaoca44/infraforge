@@ -1,0 +1,2 @@
+ALTER TABLE services
+ADD COLUMN IF NOT EXISTS last_status_code INT DEFAULT 0;
