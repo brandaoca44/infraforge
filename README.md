@@ -89,11 +89,11 @@ Remover serviço:
 
 Crie um .env baseado em:
 
-PORT=8080
-APP_ENV=development
-DATABASE_URL=postgres://postgres:postgres@localhost:5433/infraforge?sslmode=disable
-MONITOR_ENABLED=true
-MONITOR_INTERVAL_SECONDS=30
+- PORT=8080
+- APP_ENV=development
+- DATABASE_URL=postgres://postgres:postgres@localhost:5433/infraforge?sslmode=disable
+- MONITOR_ENABLED=true
+- MONITOR_INTERVAL_SECONDS=30
 
 🐳 Rodando com Docker
 docker compose up -d
